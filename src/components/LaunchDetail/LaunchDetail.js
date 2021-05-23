@@ -10,7 +10,7 @@ function LaunchDetail(props) {
         <div>Rocket ID: {rocket}</div>
         <div>Rocket Name: {rocketName}</div>
       </div>
-      <div className="launchDetailsPopup">
+      <div className="launchDetailsPopup" data-name="launch-details">
         {details || "No details to display"}
       </div>
     </li>

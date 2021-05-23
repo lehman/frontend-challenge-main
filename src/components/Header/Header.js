@@ -13,9 +13,16 @@ function Header(props) {
     <div className="header">
       <h2>{title}</h2>
       <label htmlFor="term-filter">Filter Term:</label>
-      <input name="filter" type="text" onChange={handleFilterChange} />
-      <p>Sorting by: {sortingBy}</p>
-      <button onClick={handleSortClick}>Sort by {toggleSortText}</button>
+      <input
+        name="filter"
+        type="text"
+        onChange={handleFilterChange}
+        data-name="filter-launches-by"
+      />
+      <p data-name="sorted-by">Sorting by: {sortingBy}</p>
+      <button onClick={handleSortClick} data-name="sort-launches-by">
+        Sort by {toggleSortText}
+      </button>
     </div>
   );
 }
