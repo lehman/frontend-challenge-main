@@ -25,6 +25,8 @@ function sortLaunches(launches, sortBy) {
   return sortedLaunches;
 }
 
+var filterTerm = "";
+
 class LaunchesView extends Component {
   constructor(props) {
     super(props);
@@ -111,7 +113,7 @@ class LaunchesView extends Component {
     var filteredLaunches = [];
     for (var i = 0; i < this.state.launches.length; i++) {
       var launch = this.state.launches[i];
-      if (launch.name.match(this.state.filterTerm)) {
+      if (launch.name.includes(filterTerm)) {
         filteredLaunches.push(launch);
       }
     }
@@ -142,7 +144,7 @@ class LaunchesView extends Component {
 
   render() {
     var handleFilterChange = (e) => {
-      this.setState({ filterTerm: new RegExp(e.currentTarget.value, "i") });
+      filterTerm = e.currentTarget.value;
     };
 
     var handleSortClick = (sortBy) => {
