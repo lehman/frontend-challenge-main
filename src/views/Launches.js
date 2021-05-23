@@ -25,8 +25,6 @@ function sortLaunches(launches, sortBy) {
   return sortedLaunches;
 }
 
-var filterTerm = "";
-
 class LaunchesView extends Component {
   constructor(props) {
     super(props);
@@ -113,7 +111,7 @@ class LaunchesView extends Component {
     var filteredLaunches = [];
     for (var i = 0; i < this.state.launches.length; i++) {
       var launch = this.state.launches[i];
-      if (launch.name.includes(filterTerm)) {
+      if (launch.name.match(this.state.filterTerm)) {
         filteredLaunches.push(launch);
       }
     }
@@ -144,10 +142,10 @@ class LaunchesView extends Component {
 
   render() {
     var handleFilterChange = (e) => {
-      filterTerm = e.currentTarget.value;
+      this.setState({ filterTerm: new RegExp(e.currentTarget.value, "i") });
     };
 
-    var handleSortClick = (sortBy) => {
+    var handleSortClick = () => {
       var currentSort = this.state.sort;
       var newSort;
       if (currentSort == "RocketName") {
@@ -167,7 +165,7 @@ class LaunchesView extends Component {
             this.state.sort === "RocketName" ? "Rocket" : this.state.sort
           }
           toggleSortText={this.state.sort === "Mission" ? "Rocket" : "Mission"}
-          handleSortClick={() => handleSortClick("RocketName")}
+          handleSortClick={() => handleSortClick()}
         ></Header>
         {this.getContent()}
       </section>
