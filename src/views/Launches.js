@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 
+var filterTerm = "";
+
 class LaunchesView extends Component {
   constructor(props) {
     super(props);
     this.state = {
       launches: [],
       loading: false,
-      sort: "Mission",
-      filterTerm: new RegExp("", "i"),
+      sort: 'Mission'
     };
   }
 
@@ -43,7 +44,7 @@ class LaunchesView extends Component {
     var filteredLaunches = [];
     for (var i = 0; i < this.state.launches.length; i++) {
       var launch = this.state.launches[i];
-      if (launch.name.match(this.state.filterTerm)) {
+      if (launch.name.includes(filterTerm)) {
         filteredLaunches.push(launch);
       }
     }
@@ -68,28 +69,27 @@ class LaunchesView extends Component {
   }
 
   render() {
+
     var handleFilterChange = (e) => {
-      this.setState({ filterTerm: new RegExp(e.currentTarget.value, "i") });
+      filterTerm = e.currentTarget.value;
     };
 
     var handleSortClick = (sortBy) => {
       var currentSort = this.state.sort;
       var newSort;
-      if (currentSort == "Rocket") {
-        newSort = "Mission";
+      if (currentSort == 'Rocket') {
+        newSort = 'Mission'
       } else {
-        newSort = "Rocket";
+        newSort = 'Rocket'
       }
-      this.setState({ sort: newSort });
+      this.setState({ sort: newSort })
     };
 
     return (
       <div>
         <label htmlFor="term-filter">Term:</label>
         <input name="filter" type="text" onChange={handleFilterChange} />
-        <button onClick={() => handleSortClick("Rocket")}>
-          Sort by {this.state.sort}
-        </button>
+        <button onClick={() => handleSortClick('Rocket')}>Sort by {this.state.sort}</button>
         {this.getContent()}
       </div>
     );
