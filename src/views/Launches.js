@@ -58,6 +58,8 @@ class LaunchesView extends Component {
       launchDetails.push(
         <LaunchDetail
           name={launch.name}
+          key={launch.name}
+          id={launch.name}
           rocket={launch.rocket}
           details={launch.details}
         ></LaunchDetail>
