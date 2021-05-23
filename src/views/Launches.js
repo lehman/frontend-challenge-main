@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import Header from "../components/Header/Header";
+import LaunchDetail from "../components/LaunchDetail/LaunchDetail";
 
 class LaunchesView extends Component {
   constructor(props) {
@@ -54,15 +56,11 @@ class LaunchesView extends Component {
       var launch = filteredLaunches[i];
 
       launchDetails.push(
-        <li className="launch">
-          <div className="launch-main">
-            <h2> {launch.name} </h2>
-            <div> {launch.rocket} </div>
-          </div>
-          <div className="launch-details-popup">
-            {launch.details || "No details to display"}
-          </div>
-        </li>
+        <LaunchDetail
+          name={launch.name}
+          rocket={launch.rocket}
+          details={launch.details}
+        ></LaunchDetail>
       );
     }
 
@@ -86,14 +84,15 @@ class LaunchesView extends Component {
     };
 
     return (
-      <div>
-        <label htmlFor="term-filter">Term:</label>
-        <input name="filter" type="text" onChange={handleFilterChange} />
-        <button onClick={() => handleSortClick("Rocket")}>
-          Sort by {this.state.sort}
-        </button>
+      <section>
+        <Header
+          title="SpaceX Launches"
+          handleFilterChange={handleFilterChange}
+          sortBy={this.state.sort}
+          handleSortClick={() => handleSortClick("Rocket")}
+        ></Header>
         {this.getContent()}
-      </div>
+      </section>
     );
   }
 }

@@ -1,0 +1,28 @@
+.launch {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0;
+  height: 50px;
+}
+
+.launchMain {
+  margin-right: 20px;
+}
+
+.launch h2 {
+  margin: 0 0 5px 0;
+}
+
+.launch:hover .launchDetailsPopup {
+  display: block;
+}
+
+.launchDetailsPopup {
+  display: none;
+  align-self: flex-start;
+  background: white;
+  border: 1px solid black;
+  max-width: 200px;
+  z-index: 100;
+  height: max-content;
+}

@@ -17,37 +17,14 @@ main {
 }
 
 section {
-  overflow: auto;
   padding: 20px;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }
 
-.launch {
-  display: flex;
-  flex-direction: row;
-  margin: 20px 0;
-  height: 50px;
-}
-
-.launch-main {
-  margin-right: 20px;
-}
-
-.launch h2 {
-  margin: 0 0 5px 0;
-}
-
-.launch:hover .launch-details-popup {
-  display: block;
-}
-
-.launch-details-popup {
-  display: none;
-  align-self: flex-start;
-  background: white;
-  border: 1px solid black;
-  max-width: 200px;
-  z-index: 100;
-  height: max-content;
+ul {
+  overflow-y: auto;
 }
