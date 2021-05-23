@@ -55,8 +55,10 @@ class LaunchesView extends Component {
 
       launchDetails.push(
         <li className="launch">
-          <h2> {launch.name} </h2>
-          <div> {launch.rocket} </div>
+          <div className="launch-main">
+            <h2> {launch.name} </h2>
+            <div> {launch.rocket} </div>
+          </div>
           <div className="launch-details-popup">
             {launch.details || "No details to display"}
           </div>

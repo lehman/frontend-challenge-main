@@ -1,14 +1,14 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -19,6 +19,23 @@ main {
 section {
   overflow: auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.launch {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0;
+  height: 50px;
+}
+
+.launch-main {
+  margin-right: 20px;
+}
+
+.launch h2 {
+  margin: 0 0 5px 0;
 }
 
 .launch:hover .launch-details-popup {
@@ -27,11 +44,10 @@ section {
 
 .launch-details-popup {
   display: none;
-  position: absolute;
-  top: 20px;
-  left: 100px;
+  align-self: flex-start;
   background: white;
   border: 1px solid black;
   max-width: 200px;
   z-index: 100;
+  height: max-content;
 }
