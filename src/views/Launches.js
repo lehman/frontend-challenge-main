@@ -8,8 +8,8 @@ function sortLaunches(launches, sortBy) {
   let sortedLaunches = [];
 
   switch (sortBy) {
-    case "Mission":
-    // are "launch" and "mission" used interchangeably here?
+    case "Mission": // are "launch" and "mission" used interchangeably here?
+    // fall through
     case "LaunchName":
       sortedLaunches = launches.sort((a, b) => (a.name > b.name ? 1 : -1));
       break;
@@ -40,11 +40,10 @@ class LaunchesView extends Component {
 
   componentDidMount() {
     this.setState({ loading: true, loadingRocketData: true });
-    var api = axios.create();
 
     const getLaunchData = new Promise((resolve, reject) => {
       this.setState({ loading: true });
-      var api = axios.create();
+      let api = axios.create();
       api
         .get("https://api.spacexdata.com/v4/launches")
         .then((launches) => {
@@ -63,7 +62,7 @@ class LaunchesView extends Component {
 
     const getRocketData = new Promise((resolve, reject) => {
       this.setState({ loadingRocketData: true });
-      var api = axios.create();
+      let api = axios.create();
       api
         .get("https://api.spacexdata.com/v4/rockets")
         .then((rockets) => {
@@ -85,7 +84,7 @@ class LaunchesView extends Component {
       let rockets = values[1];
 
       let launchesWithRocketName = launches.map((launch) => {
-        let rocket = rockets.find((rocket) => rocket.id == launch.rocket);
+        let rocket = rockets.find((rocket) => rocket.id === launch.rocket);
         let result = {};
         rocket === undefined
           ? (result = { ...launch, rocketName: null })
@@ -108,22 +107,22 @@ class LaunchesView extends Component {
       return <div> NO DATA </div>;
     }
 
-    var filteredLaunches = [];
-    for (var i = 0; i < this.state.launches.length; i++) {
-      var launch = this.state.launches[i];
+    let filteredLaunches = [];
+    for (let i = 0; i < this.state.launches.length; i++) {
+      let launch = this.state.launches[i];
       if (launch.name.match(this.state.filterTerm)) {
         filteredLaunches.push(launch);
       }
     }
 
-    var sortedFilteredLaunches = sortLaunches(
+    let sortedFilteredLaunches = sortLaunches(
       filteredLaunches,
       this.state.sort
     );
-    var launchDetails = [];
+    let launchDetails = [];
 
-    for (var i = 0; i < sortedFilteredLaunches.length; i++) {
-      var launch = sortedFilteredLaunches[i];
+    for (let i = 0; i < sortedFilteredLaunches.length; i++) {
+      let launch = sortedFilteredLaunches[i];
 
       launchDetails.push(
         <LaunchDetail
@@ -146,9 +145,9 @@ class LaunchesView extends Component {
     };
 
     var handleSortClick = () => {
-      var currentSort = this.state.sort;
-      var newSort;
-      if (currentSort == "RocketName") {
+      let currentSort = this.state.sort;
+      let newSort;
+      if (currentSort === "RocketName") {
         newSort = "Mission";
       } else {
         newSort = "RocketName";

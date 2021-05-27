@@ -26,5 +26,5 @@ it("renders the launches header", () => {
     </Provider>
   );
 
-  expect(wrapper.contains(<h2> SpaceX Launches </h2>)).toEqual(true);
+  expect(wrapper.contains(/SpaceX Launches/i)).toEqual(true);
 });
